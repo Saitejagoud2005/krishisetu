@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Green KrishiSetu — Request Product Wireframe</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
+<style>
+  :root{
+    --green-900:#14531a;
+    --green-700:#1e7e1e;
+    --green-600:#2d6a2d;
+    --green-100:#e8f5e8;
+    --green-200:#a8d5a8;
+    --green-50:#f3faf3;
+    --border-green:#c5d9c5;
+    --field-bg:#fafdf9;
+    --orange-bg:#fff8f0;
+    --orange-border:#f5c49a;
+    --orange-text:#b04a00;
+    --orange-sub:#a06040;
+    --gray-900:#222;
+    --gray-700:#444;
+    --gray-500:#777;
+    --gray-300:#aaa;
+    --white:#fff;
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --font: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:var(--font);background:#eef3ee;color:var(--gray-900)}
+  body{padding:32px 16px;min-height:100vh}
+
+  /* ===== Page header (dev/spec note, not part of UI) ===== */
+  .build-note{
+    max-width:1100px;margin:0 auto 28px;background:var(--white);
+    border:1px solid var(--border-green);border-radius:var(--radius-md);
+    padding:16px 20px;
+  }
+  .build-note h1{font-size:18px;color:var(--green-700);margin-bottom:4px}
+  .build-note p{font-size:13px;color:var(--gray-500)}
+  .build-note code{background:var(--green-100);color:var(--green-700);padding:1px 6px;border-radius:4px;font-size:12px}
+
+  /* ===== Layout wrapper ===== */
+  .app-shell{
+    max-width:420px;margin:0 auto;background:var(--white);
+    border-radius:var(--radius-lg);overflow:hidden;
+    box-shadow:0 6px 24px rgba(20,83,26,0.12);
+    border:1px solid var(--border-green);
+  }
+
+  /* ===== Header ===== */
+  .app-header{
+    background:linear-gradient(135deg,var(--green-700),var(--green-600));
+    padding:16px 18px 14px;display:flex;align-items:center;gap:12px;
+  }
+  .app-logo{
+    width:38px;height:38px;border-radius:10px;background:var(--white);
+    display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+  }
+  .app-header-text h1{color:var(--white);font-size:17px;font-weight:600;letter-spacing:.2px}
+  .app-header-text p{color:var(--green-200);font-size:12px;margin-top:1px}
+  .app-header-icons{margin-left:auto;display:flex;gap:14px;color:var(--white);font-size:20px}
+  .app-header-icons i{cursor:pointer;opacity:.95;transition:opacity .15s}
+  .app-header-icons i:hover{opacity:1}
+
+  /* ===== Search section ===== */
+  .search-section{background:var(--green-100);padding:16px 18px}
+  .search-bar{
+    background:var(--white);border:1px solid var(--border-green);
+    border-radius:10px;display:flex;align-items:center;gap:8px;
+    padding:10px 12px;
+  }
+  .search-bar i.ti-search{color:var(--green-700);font-size:18px}
+  .search-bar input{
+    border:none;outline:none;font-size:14px;color:var(--gray-900);
+    flex:1;background:transparent;font-family:inherit;
+  }
+  .search-bar input::placeholder{color:var(--gray-300)}
+  .search-btn{
+    background:var(--green-700);color:var(--white);border:none;
+    border-radius:7px;padding:7px 14px;font-size:12.5px;font-weight:600;
+    cursor:pointer;font-family:inherit;transition:background .15s;
+  }
+  .search-btn:hover{background:var(--green-900)}
+
+  .quick-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .tag{
+    background:var(--white);color:var(--green-700);border:1px solid var(--border-green);
+    border-radius:20px;padding:5px 12px;font-size:12px;font-weight:500;
+    cursor:pointer;transition:all .15s;
+  }
+  .tag:hover{background:var(--green-700);color:var(--white);border-color:var(--green-700)}
+
+  /* ===== Product Not Found ===== */
+  .not-found{
+    margin:14px 18px;background:var(--orange-bg);border:1px solid var(--orange-border);
+    border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;
+  }
+  .not-found i{font-size:22px;color:#e2792f;line-height:1;margin-top:1px}
+  .not-found h3{font-size:14px;font-weight:600;color:var(--orange-text)}
+  .not-found p{font-size:12.5px;color:var(--orange-sub);margin-top:3px;line-height:1.4}
+  .not-found strong{font-weight:600}
+
+  /* ===== Request form card ===== */
+  .request-card{
+    margin:0 18px 18px;background:var(--white);
+    border:1px solid var(--border-green);border-radius:14px;overflow:hidden;
+  }
+  .request-card-header{
+    background:var(--green-700);padding:12px 16px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .request-card-header i{color:var(--green-200);font-size:18px}
+  .request-card-header span{color:var(--white);font-size:14px;font-weight:600}
+
+  form.request-form{padding:16px}
+  .field-group{margin-bottom:14px}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .field-row .field-group{margin-bottom:0}
+
+  label.field-label{
+    font-size:12px;color:var(--gray-700);font-weight:600;
+    margin-bottom:6px;display:flex;align-items:center;gap:5px;
+  }
+  label.field-label i{font-size:14px;color:var(--green-700)}
+  .required::after{content:" *";color:#d33}
+
+  input[type="text"], input[type="tel"], input[type="number"], select{
+    width:100%;border:1px solid var(--border-green);border-radius:8px;
+    padding:10px 12px;font-size:13.5px;color:var(--gray-900);
+    background:var(--field-bg);outline:none;font-family:inherit;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input::placeholder{color:var(--gray-300)}
+  input:focus, select:focus{
+    border-color:var(--green-700);
+    box-shadow:0 0 0 3px rgba(30,126,30,0.12);
+  }
+  select{appearance:auto;cursor:pointer}
+
+  /* Image upload */
+  .upload-box{
+    border:1.5px dashed var(--green-200);border-radius:10px;
+    padding:22px 14px;text-align:center;background:var(--green-50);
+    cursor:pointer;transition:all .15s;position:relative;
+  }
+  .upload-box:hover{border-color:var(--green-700);background:#eef9ee}
+  .upload-box i{font-size:30px;color:var(--green-700);display:block;margin-bottom:8px}
+  .upload-box p{font-size:13px;color:var(--green-600);font-weight:500}
+  .upload-box span{font-size:11.5px;color:var(--green-200);display:block;margin-top:3px}
+  .upload-box input[type=file]{
+    position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+  }
+  .upload-preview{
+    display:none;margin-top:10px;border-radius:8px;overflow:hidden;
+    border:1px solid var(--border-green);max-height:140px;
+  }
+  .upload-preview img{width:100%;display:block;object-fit:cover}
+
+  /* Submit button */
+  .submit-btn{
+    width:100%;background:var(--green-700);color:var(--white);border:none;
+    border-radius:10px;padding:13px;font-size:14.5px;font-weight:600;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:6px;font-family:inherit;transition:background .15s, transform .1s;
+  }
+  .submit-btn i{font-size:17px}
+  .submit-btn:hover{background:var(--green-900)}
+  .submit-btn:active{transform:scale(0.98)}
+
+  .helper-text{font-size:11px;color:var(--gray-500);margin-top:5px}
+
+  /* ===== Bottom tab bar ===== */
+  .tab-bar{
+    display:flex;background:var(--green-50);border-top:1px solid var(--border-green);
+    padding:10px 0 8px;
+  }
+  .tab{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    font-size:10.5px;color:#9fb39f;cursor:pointer;transition:color .15s;background:none;border:none;font-family:inherit;
+  }
+  .tab i{font-size:21px}
+  .tab.active{color:var(--green-700);font-weight:600}
+
+  /* ===== Success Modal ===== */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(10,40,10,0.55);
+    align-items:center;justify-content:center;z-index:1000;padding:20px;
+    backdrop-filter:blur(2px);
+  }
+  .modal-overlay.open{display:flex}
+  .success-card{
+    background:var(--white);border-radius:18px;padding:32px 26px;text-align:center;
+    width:100%;max-width:320px;border:1px solid var(--border-green);
+    animation:pop .2s ease-out;
+  }
+  @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+  .success-icon{
+    width:60px;height:60px;border-radius:50%;background:var(--green-100);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+    font-size:30px;color:var(--green-700);
+  }
+  .success-card h2{font-size:17px;font-weight:700;color:var(--green-700);margin-bottom:8px}
+  .success-card p{font-size:13px;color:var(--gray-500);line-height:1.5;margin-bottom:20px}
+  .success-card p strong{color:var(--gray-900)}
+  .success-btn{
+    background:var(--green-700);color:var(--white);border:none;border-radius:9px;
+    padding:11px 32px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;
+    transition:background .15s;
+  }
+  .success-btn:hover{background:var(--green-900)}
+
+  /* ===== Responsive: Desktop / tablet ===== */
+  @media (min-width:760px){
+    body{padding:48px 24px}
+    .app-shell{
+      max-width:880px;border-radius:20px;
+      display:grid;grid-template-columns:300px 1fr;
+    }
+    .app-header{grid-column:1 / -1;padding:20px 28px}
+    .app-header-text h1{font-size:19px}
+    .search-section{grid-column:1;border-right:1px solid var(--border-green)}
+    .not-found{grid-column:2;margin:18px 24px 0}
+    .request-card{grid-column:2;margin:14px 24px 24px}
+    .tab-bar{display:none}
+    /* Desktop side nav replaces tab bar */
+    .desktop-nav{
+      grid-column:1;display:flex;flex-direction:column;gap:4px;padding:0 14px 20px;
+    }
+    .desktop-nav .tab{
+      flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 12px;
+      border-radius:8px;font-size:13px;
+    }
+    .desktop-nav .tab:hover{background:var(--white)}
+    .desktop-nav .tab.active{background:var(--white);box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+    .field-row{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:759px){
+    .desktop-nav{display:none}
+  }
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+</style>
+</head>
+<body>
+
+<div class="build-note">
+  <h1>🌱 Green KrishiSetu — Request Product Wireframe</h1>
+  <p>Static front-end wireframe. Mobile-first, responsive at 760px+. Hook up the form submit handler (search for <code>// TODO:</code> in the script) to your backend / API.</p>
+</div>
+
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-logo" aria-hidden="true">🌱</div>
+    <div class="app-header-text">
+      <h1>KrishiSetu</h1>
+      <p>Agri marketplace</p>
+    </div>
+    <div class="app-header-icons">
+      <i class="ti ti-bell" title="Notifications"></i>
+      <i class="ti ti-user-circle" title="Profile"></i>
+    </div>
+  </header>
+
+  <!-- Desktop side nav (hidden on mobile, tab-bar shown instead) -->
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <button class="tab"><i class="ti ti-home"></i> Home</button>
+    <button class="tab active"><i class="ti ti-search"></i> Search</button>
+    <button class="tab"><i class="ti ti-shopping-cart"></i> Cart</button>
+    <button class="tab"><i class="ti ti-user"></i> Profile</button>
+  </nav>
+
+  <!-- Search section -->
+  <section class="search-section" aria-label="Product search">
+    <form class="search-bar" id="searchForm" role="search">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input type="text" id="searchInput" placeholder="Search seeds, fertilisers, tools…" aria-label="Search products" />
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+    <div class="quick-tags" role="list" aria-label="Quick filters">
+      <button type="button" class="tag" role="listitem">Seeds</button>
+      <button type="button" class="tag" role="listitem">Fertiliser</button>
+      <button type="button" class="tag" role="listitem">Pesticide</button>
+      <button type="button" class="tag" role="listitem">Tools</button>
+    </div>
+  </section>
+
+  <!-- Product Not Found message -->
+  <div class="not-found" id="notFoundMsg" role="alert">
+    <i class="ti ti-mood-sad" aria-hidden="true"></i>
+    <div>
+      <h3>Product not found</h3>
+      <p>We couldn't find "<strong id="missingProductName">Organic Neem Oil 5L</strong>". Fill the form below to request it and we'll notify you when it's available.</p>
+    </div>
+  </div>
+
+  <!-- Request Product form -->
+  <div class="request-card">
+    <div class="request-card-header">
+      <i class="ti ti-clipboard-list" aria-hidden="true"></i>
+      <span>Request a product</span>
+    </div>
+
+    <form class="request-form" id="requestForm" novalidate>
+
+      <div class="field-group">
+        <label class="field-label required" for="productName"><i class="ti ti-tag"></i>Product name</label>
+        <input type="text" id="productName" name="productName" placeholder="e.g. Organic Neem Oil 5L" required />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="productImage"><i class="ti ti-photo-up"></i>Upload image (optional)</label>
+        <div class="upload-box" id="uploadBox">
+          <i class="ti ti-cloud-upload" aria-hidden="true"></i>
+          <p>Tap to upload a photo</p>
+          <span>JPG, PNG up to 5 MB</span>
+          <input type="file" id="productImage" name="productImage" accept="image/png, image/jpeg" />
+        </div>
+        <div class="upload-preview" id="uploadPreview"><img id="previewImg" alt="Selected product preview" /></div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label required" for="state"><i class="ti ti-map-pin"></i>State</label>
+          <select id="state" name="state" required>
+            <option value="" disabled selected>Select state</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="punjab">Punjab</option>
+            <option value="uttar_pradesh">Uttar Pradesh</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="telangana">Telangana</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label required" for="district"><i class="ti ti-building-community"></i>District</label>
+          <select id="district" name="district" required>
+            <option value="" disabled selected>Select district</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="budget"><i class="ti ti-currency-rupee"></i>Budget (₹)</label>
+          <input type="text" id="budget" name="budget" placeholder="e.g. 500–800" />
+        </div>
+        <div class="field-group">
+          <label class="field-label required" for="quantity"><i class="ti ti-stack"></i>Quantity</label>
+          <input type="text" id="quantity" name="quantity" placeholder="e.g. 2 bottles" required />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label required" for="mobile"><i class="ti ti-phone"></i>Mobile number</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" pattern="[+0-9 ]{10,15}" required />
+        <p class="helper-text">We'll notify you here when this product becomes available.</p>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <i class="ti ti-send" aria-hidden="true"></i> Submit request
+      </button>
+    </form>
+  </div>
+
+  <!-- Mobile tab bar -->
+  <nav class="tab-bar" aria-label="Primary navigation (mobile)">
+    <button class="tab"><i class="ti ti-home"></i>Home</button>
+    <button class="tab active"><i class="ti ti-search"></i>Search</button>
+    <button class="tab"><i class="ti ti-shopping-cart"></i>Cart</button>
+    <button class="tab"><i class="ti ti-user"></i>Profile</button>
+  </nav>
+
+</div>
+
+<!-- Success modal -->
+<div class="modal-overlay" id="successOverlay" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="success-card">
+    <div class="success-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+    <h2 id="successTitle">Request submitted!</h2>
+    <p>We'll notify you on <strong id="successPhone">+91 98765 43210</strong> as soon as this product is available.</p>
+    <button class="success-btn" id="closeSuccessBtn">Done</button>
+  </div>
+</div>
+
+<script>
+  // ---- District options keyed by state (sample data — replace with real dataset / API) ----
+  const districtsByState = {
+    maharashtra: ['Nashik', 'Pune', 'Nagpur', 'Aurangabad', 'Kolhapur'],
+    punjab: ['Ludhiana', 'Amritsar', 'Patiala', 'Jalandhar'],
+    uttar_pradesh: ['Lucknow', 'Kanpur', 'Varanasi', 'Agra'],
+    karnataka: ['Bengaluru', 'Mysuru', 'Hubballi', 'Belagavi'],
+    telangana: ['Hyderabad', 'Warangal', 'Nizamabad'],
+    other: ['Other']
+  };
+
+  const stateSelect = document.getElementById('state');
+  const districtSelect = document.getElementById('district');
+
+  stateSelect.addEventListener('change', () => {
+    const districts = districtsByState[stateSelect.value] || [];
+    districtSelect.innerHTML = '<option value="" disabled selected>Select district</option>' +
+      districts.map(d => `<option value="${d.toLowerCase().replace(/\s+/g,'_')}">${d}</option>`).join('');
+  });
+
+  // ---- Image upload preview ----
+  const productImage = document.getElementById('productImage');
+  const uploadPreview = document.getElementById('uploadPreview');
+  const previewImg = document.getElementById('previewImg');
+
+  productImage.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      previewImg.src = ev.target.result;
+      uploadPreview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ---- Search form ----
+  document.getElementById('searchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const query = document.getElementById('searchInput').value.trim();
+    if (!query) return;
+    // TODO: replace with real product search API call.
+    // Demo behavior: show "not found" state and prefill the request form.
+    document.getElementById('missingProductName').textContent = query;
+    document.getElementById('notFoundMsg').style.display = 'flex';
+    document.getElementById('productName').value = query;
+  });
+
+  // ---- Request form submit ----
+  document.getElementById('requestForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const mobile = document.getElementById('mobile').value;
+    // TODO: replace with real API POST (FormData includes the uploaded image file).
+    // const formData = new FormData(form);
+    // fetch('/api/product-requests', { method: 'POST', body: formData });
+
+    document.getElementById('successPhone').textContent = mobile;
+    document.getElementById('successOverlay').classList.add('open');
+  });
+
+  document.getElementById('closeSuccessBtn').addEventListener('click', () => {
+    document.getElementById('successOverlay').classList.remove('open');
+    document.getElementById('requestForm').reset();
+    document.getElementById('uploadPreview').style.display = 'none';
+    document.getElementById('notFoundMsg').style.display = 'flex'; // keep visible per design; remove if desired
+  });
+
+  // Close modal on overlay click (outside card)
+  document.getElementById('successOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'successOverlay') {
+      document.getElementById('closeSuccessBtn').click();
+    }
+  });
+</script>
+
+</body>
+</html>
